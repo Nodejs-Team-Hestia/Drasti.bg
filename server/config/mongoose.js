@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    models = require('../models/index');
 
 module.exports = function (config) {
     mongoose.connect(config.db);
@@ -16,4 +17,6 @@ module.exports = function (config) {
     db.on('error', function (error) {
         console.log('Database error: ' + error);
     });
+
+    models.user.seedInitialUsers();
 };
