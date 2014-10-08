@@ -13,7 +13,7 @@ module.exports = function (config) {
         console.log('Database up and running...');
     });
 
-    db.on('open', function (error) {
+    db.on('error', function (error) {
         console.log('Database error: ' + error);
     });
 };
