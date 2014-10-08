@@ -1,0 +1,29 @@
+{
+  "name": "Drasti.bg",
+  "version": "0.0.1",
+  "description": "Social Dating Service",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nodejs-Team-Hestia/Drasti.bg.git"
+  },
+  "keywords": [
+    "social"
+  ],
+  "author": "Team Hestia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nodejs-Team-Hestia/Drasti.bg/issues"
+  },
+  "homepage": "https://github.com/Nodejs-Team-Hestia/Drasti.bg",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "express": "^4.9.5",
+    "jade": "^1.7.0",
+    "mongoose": "^3.8.17",
+    "passport": "^0.2.1"
+  }
+}
