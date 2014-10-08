@@ -6,3 +6,7 @@ var albumSchema = mongoose.Schema({
     photos: [photoSchema]
     // TODO: we may need more props
 });
+
+var Album = mongoose.model('Album', albumSchema);
+
+module.exports = Album;
