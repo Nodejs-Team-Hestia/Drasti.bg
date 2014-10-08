@@ -5,7 +5,10 @@ var photoSchema = mongoose.Schema({
     Description: String,
     published: Date,
     isApproved: Boolean,
-    viewsCount: Number
+    viewsCount: Number,
+    comments: [
+        {type: mongoose.Schema.ObjectId, ref: 'Comment'}
+    ]
     // TODO: image data, image url, tags ??
 });
 

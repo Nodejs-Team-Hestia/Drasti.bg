@@ -11,10 +11,10 @@ var userSchema = mongoose.Schema({
         country: String
     },
     albums: [
-        {type: Schema.ObjectId, ref: 'Album'}
+        {type: mongoose.Schema.ObjectId, ref: 'Album'}
     ],
     friends: [
-        {type: Schema.ObjectId, ref: 'User'}
+        {type: mongoose.Schema.ObjectId, ref: 'User'}
     ],
     salt: String,
     hashPassword: String

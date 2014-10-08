@@ -3,7 +3,9 @@ var photoSchema = mongoose.model('Photo').schema;
 
 var albumSchema = mongoose.Schema({
     title: {type: String, required: true},
-    photos: [photoSchema]
+    photos: [
+        {type: mongoose.Schema.ObjectId, ref: 'Photo'}
+    ]
     // TODO: we may need more props
 });
 
