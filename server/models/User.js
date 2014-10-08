@@ -16,6 +16,9 @@ var userSchema = mongoose.Schema({
     friends: [
         {type: mongoose.Schema.ObjectId, ref: 'User'}
     ],
+    messages: [
+        {type: mongoose.Schema.ObjectId, ref: 'Message'}
+    ],
     salt: String,
     hashPassword: String
 });

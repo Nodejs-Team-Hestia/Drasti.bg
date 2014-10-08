@@ -1,13 +1,14 @@
-var Photo = require('../models/Photo'),
-    Album = require('../models/Album'),
+var Album = require('../models/Album'),
+    Comment = require('../models/Comment'),
     Message = require('../models/Message'),
-    User = require('../models/User'),
-    Comment = require('../models/Comment');
+    Photo = require('../models/Photo'),
+    User = require('../models/User');
+
 
 module.exports = {
-    photo: Photo,
     album: Album,
+    comment: Comment,
     message: Message,
-    user: User,
-    comment: Comment
+    photo: Photo,
+    user: User
 };
