@@ -1,6 +1,7 @@
 var auth = require('./auth'),
     controllers = require('../controllers'),
-    PHOTO_PATH = '/:userId/:albumId';
+    PHOTO_PATH = '/:userId/:albumId',
+    ALBUM_PATH = '/:userId/albums';
 
 module.exports = function (app) {
     app.get('/', function (req, res) {
@@ -20,6 +21,13 @@ module.exports = function (app) {
     app.get(PHOTO_PATH + '/:id', controllers.photos.getPhotoById);
     app.put(PHOTO_PATH + '/:id', auth.isInRole('user'), controllers.photos.updatePhoto);
     app.delete(PHOTO_PATH + '/:id', auth.isInRole('user'), controllers.photos.deletePhoto);
+
+    // album
+    app.get(ALBUM_PATH, controllers.albums.getAllAlbums);
+    app.post(ALBUM_PATH, controllers.albums.createAlbum);
+    app.get(ALBUM_PATH + '/:id', controllers.albums.getAlbumById);
+    app.put(ALBUM_PATH, controllers.albums.updateAlbum);
+    app.delete(ALBUM_PATH, controllers.albums.deleteAlbum);
 
     app.get('*', function (req, res) {
         res.redirect('/');

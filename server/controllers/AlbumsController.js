@@ -46,7 +46,7 @@ module.exports = {
             });
         }
     },
-    deleteALbum: function (req, res, next) {
+    deleteAlbum: function (req, res, next) {
         var data = req.body;
         Album.remove({_id: data._id}, function (err) {
             if (err) {
