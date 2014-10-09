@@ -5,7 +5,7 @@ var messageSchema = mongoose.Schema({
     text: {type: String, required: true},
     sender: {type: mongoose.Schema.ObjectId, ref: 'User'},
 	receiver: {type: mongoose.Schema.ObjectId, ref: 'User'},
-    sent: date : {type: Date, default: new Date()}
+    sent: {type: Date, default: new Date()}
 });
 
 var Message = mongoose.model('Message', messageSchema);
