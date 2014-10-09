@@ -1,0 +1,18 @@
+﻿<div class="container clearfix">
+	<div data-page-title="" data-title="Drivers"></div>
+	<div class="row" ng-show="model.isAuth">
+		<div class="col-md-12">
+			<label>Filter: <input type="text" data-ng-model="model.filter"></label>
+			<div data-paging></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div ng-include="src='app/templates/driversTable.html'"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

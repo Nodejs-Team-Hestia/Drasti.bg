@@ -1,0 +1,38 @@
+﻿<div class="container clearfix">
+	<div data-page-title="" data-title="{{ model.driver.name }}"></div>
+	<br />
+	<div class="row text-center">
+		<div class="col-lg-2">
+			<label>Upcoming trips:</label>
+			<label>{{ model.driver.numberOfUpcomingTrips }}</label>
+		</div>
+		<div class="col-lg-2">
+			<label>Total Trips:</label>
+			<label>{{ model.driver.numberOfTotalTrips }}</label>
+		</div>
+		<div class="col-lg-2">
+			<label>Only mine trips: <input type="checkbox" data-ng-model="model.onlyMine" /></label>
+		</div>
+		<div class="col-lg-2">
+			<label>Only driver trips: <input type="checkbox" data-ng-model="model.onlyMeAsDriverTrips" /></label>
+		</div>
+		<div class="col-lg-4">
+			<label>
+				Sort by:
+				<select ng-model="model.sortBy" ng-options="sortBy.name for sortBy in model.sortByCondition"></select>
+			</label>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div ng-include="src='app/templates/tripsTable.html'"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

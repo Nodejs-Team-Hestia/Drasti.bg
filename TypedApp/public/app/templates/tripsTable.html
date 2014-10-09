@@ -1,0 +1,28 @@
+﻿<table class="table">
+	<thead>
+		<tr>
+			<th>Driver</th>
+			<th>From</th>
+			<th>To</th>
+			<th>Departure Time</th>
+			<th ng-show="model.showIsMine">Is Mine</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="trip in model.trips | orderBy:model.sortBy.value:model.reverse | filter: { isMine: model.onlyMine } | driverTrips:model">
+			<td><a href="/#/trips/{{trip.id}}">{{ trip.driverName }}</a></td>
+			<td>{{ trip.from }}</td>
+			<td>{{ trip.to }}</td>
+			<td>{{ trip.departureDate | date:'short' }}</td>
+			<td ng-show="model.showIsMine">
+				<span ng-show="trip.isMine" class="glyphicon glyphicon-ok" style="color: yellowgreen"></span>
+				<span ng-show="!trip.isMine" class="glyphicon glyphicon-remove" style="color:red"></span>
+			</td>
+		</tr>
+		<tr ng-show="!model.trips.length">
+			<td colspan="4">
+				No results!
+			</td>
+		</tr>
+	</tbody>
+</table>

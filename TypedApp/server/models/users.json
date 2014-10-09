@@ -1,0 +1,30 @@
+[
+	{
+		"username": "Anastasoff",
+		"firstName": "Martin",
+		"lastName": "Anastasov",
+		"email": "Anastasoff@drasti.bg",
+		"roles": [ "admin" ]
+	},
+	{
+		"username": "SPopgeorgiev",
+		"firstName": "Stefan",
+		"lastName": "Popgeorgiev",
+		"email": "SPopgeorgiev@drasti.bg",
+		"roles": [ "admin" ]
+	},
+	{
+		"username": "ventsislav-georgiev",
+		"firstName": "Ventsislav",
+		"lastName": "Georgiev",
+		"email": "ventsislav-georgiev@drasti.bg",
+		"roles": [ "admin" ]
+	},
+	{
+		"username": "kulin1987",
+		"firstName": "Ventsislav",
+		"lastName": "Kulin",
+		"email": "kulin1987@drasti.bg",
+		"roles": [ "admin" ]
+	}
+]

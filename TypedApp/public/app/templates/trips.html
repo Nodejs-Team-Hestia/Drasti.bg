@@ -1,0 +1,63 @@
+﻿<div class="container clearfix">
+	<div data-page-title="" data-title="Trips"></div>
+	<div class="row" ng-show="model.isAuth">
+		<div class="col-lg-12">
+			<label>
+				<button type="button" class="btn btn-default" data-ng-click="model.createTrip()">
+					<span>Create Trip</span>
+				</button>
+			</label>
+		</div>
+	</div>
+	<br />
+	<br />
+	<div class="row" ng-show="model.isAuth">
+		<div class="col-md-3">
+			<label>
+				Sort:
+				<select ng-model="model.sortBy" ng-options="sortBy.name for sortBy in model.sortByCondition"></select>
+			</label>
+		</div>
+		<div class="col-md-3">
+			<label>
+				Order:
+				<select ng-model="model.orderBy" ng-options="orderBy.name for orderBy in model.orderByCondition"></select>
+			</label>
+		</div>
+		<div class="col-md-3">
+			<label>
+				From:
+				<select ng-model="model.from" ng-options="from for from in model.fromCities"></select>
+			</label>
+		</div>
+		<div class="col-md-3">
+			<label>
+				To:
+				<select ng-model="model.to" ng-options="to for to in model.toCities"></select>
+			</label>
+		</div>
+	</div>
+	<br />
+	<div class="row" ng-show="model.isAuth">
+		<div class="col-md-12">
+			<span>
+				Include finished:
+				<input type="checkbox" data-ng-model="model.includeFinished" />
+			</span>
+			<span>
+				Only mine:
+				<input type="checkbox" data-ng-model="model.onlyMine" />
+			</span>
+			<div data-paging></div>
+		</div>
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div ng-include="src='app/templates/tripsTable.html'"></div>
+				</div>
+			</div>
+		</div>
+	</div>

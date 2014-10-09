@@ -1,0 +1,72 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "angularjs/angular.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "mongoose/mongoose.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "node/node.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "mongodb/mongodb.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "express/express.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "express-session/express-session.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "cookie-parser/cookie-parser.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "passport/passport.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "passport-local/passport-local.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "body-parser/body-parser.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "node-uuid/node-uuid.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "uuid/UUID.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "stylus/stylus.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "angularjs/angular-resource.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "angularjs/angular-cookies.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "angularjs/angular-route.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "angularjs/angular-animate.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "angularjs/angular-sanitize.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "angularjs/angular-scenario.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    },
+    "toastr/toastr.d.ts": {
+      "commit": "6ba439cd01b22ed16c2020f246430a439b632f9b"
+    }
+  }
+}

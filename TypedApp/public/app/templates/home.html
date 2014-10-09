@@ -1,0 +1,43 @@
+﻿<div class="container clearfix">
+	<div data-page-title="" data-title="Welcome to Trip Exchange!"></div>
+	<br />
+	<div class="row text-center">
+		<div class="col-lg-3">
+			<label>Trips:</label>
+			<label>{{ model.stats.trips }}</label>
+		</div>
+		<div class="col-lg-3">
+			<label>Finished Trips:</label>
+			<label>{{ model.stats.finishedTrips }}</label>
+		</div>
+		<div class="col-lg-3">
+			<label>Users:</label>
+			<label>{{ model.stats.users }}</label>
+		</div>
+		<div class="col-lg-3">
+			<label>Drivers:</label>
+			<label>{{ model.stats.drivers }}</label>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h4 class="panel-title text-center">Latest Trips</h4>
+					<div ng-include="src='app/templates/tripsTable.html'"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h4 class="panel-title text-center">Latest Drivers</h4>
+					<div ng-include="src='app/templates/driversTable.html'"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

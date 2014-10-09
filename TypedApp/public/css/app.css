@@ -1,0 +1,26 @@
+div.cell {
+	border: 2px solid black;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+	font-size: 22px;
+	text-align: center;
+	line-height: 90px;
+	background-color: gray;
+	color: greenyellow;
+}
+
+	div.cell:hover {
+		background-color: silver;
+	}
+
+form .inputs label.error {
+	font-size: 0.9em;
+	margin: 0;
+}
+
+form .error-container {
+	color: #bb1f34;
+	font-size: 1.2em;
+	margin: 0.9em 0;
+}

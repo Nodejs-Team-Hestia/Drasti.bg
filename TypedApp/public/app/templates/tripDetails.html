@@ -1,0 +1,35 @@
+﻿<div class="container clearfix">
+	<div data-page-title="" data-title="{{ model.trip.driverName }}"></div>
+	<br />
+	<div class="row text-center">
+		<div class="col-lg-3">
+			<label>From:</label>
+			<label>{{ model.trip.from }}</label>
+		</div>
+		<div class="col-lg-3">
+			<label>To:</label>
+			<label>{{ model.trip.to }}</label>
+		</div>
+		<div class="col-lg-3">
+			<label>Number of free seats:</label>
+			<label>{{ model.trip.numberOfFreeSeats }}</label>
+		</div>
+		<div class="col-lg-3">
+			<label>
+				<button type="button" data-ng-click="model.joinTrip()">
+					<span>Join Trip</span>
+				</button>
+			</label>
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-lg-12">
+			<label>
+				Passengers:
+			</label>
+			<div ng-repeat="passenger in model.trip.passengers">
+				{{passenger}}
+			</div>
+		</div>
+	</div>
+</div>

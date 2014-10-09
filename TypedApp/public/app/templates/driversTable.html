@@ -1,0 +1,21 @@
+﻿<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Upcoming Trips</th>
+			<th>Total Trips</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="driver in model.drivers">
+			<td><a href="/#/drivers/{{driver.id}}">{{ driver.name }}</a></td>
+			<td>{{ driver.numberOfUpcomingTrips }}</td>
+			<td>{{ driver.numberOfTotalTrips }}</td>
+		</tr>
+		<tr ng-show="!model.drivers.length">
+			<td colspan="4">
+				<h1>No results!</h1>
+			</td>
+		</tr>
+	</tbody>
+</table>
