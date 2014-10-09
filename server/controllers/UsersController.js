@@ -5,7 +5,7 @@ module.exports = {
     createUser: function (req, res, next) {
         var newUserData = req.body;
         newUserData.salt = encryption.generateSalt();
-        newUserData.hashPassword = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+        newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
 
         User.create(newUserData, function (err, user) {
             debugger;
@@ -29,7 +29,7 @@ module.exports = {
             var updatedUserData = req.body;
             if (updatedUserData.password && updatedUserData.password.length > 0) {
                 updatedUserData.salt = encryption.generateSalt();
-                updatedUserData.hashPassword = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+                updatedUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
             }
 
             User.update({_id: req.body._id}, updatedUserData, function () {
@@ -50,7 +50,7 @@ module.exports = {
     },
     getUserById: function (req, res) {
         User.findOne({_id: req.params.id})
-            .select('-salt -hashPassword')
+            .select('-salt -hashPass')
             .exec(function (err, user) {
                 if (err) {
                     console.log('Failed to find the user: ' + err);

@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
         country: String
     },
     salt: String,
-    hashPassword: String,
+    hashPass: String,
     roles: [String],
     albums: [
         {type: mongoose.Schema.ObjectId, ref: 'Album'}
@@ -40,19 +40,19 @@ module.exports.seedInitialUsers = function () {
 
             salt = encryption.generateSalt();
             hashedPassword = encryption.generateHashedPassword(salt, 'Anastasoff');
-            User.create({username: 'Anastasoff', firstName: 'Martin', lastName: 'Anastasov', email: 'Anastasoff@drasti.bg', salt: salt, hashPassword: hashedPassword, roles: ['admin']});
+            User.create({username: 'Anastasoff', firstName: 'Martin', lastName: 'Anastasov', email: 'Anastasoff@drasti.bg', salt: salt, hashPass: hashedPassword, roles: ['admin']});
 
             salt = encryption.generateSalt();
             hashedPassword = encryption.generateHashedPassword(salt, 'SPopgeorgiev');
-            User.create({username: 'SPopgeorgiev', firstName: 'Stefan', lastName: 'Popgeorgiev', email: 'SPopgeorgiev@drasti.bg', salt: salt, hashPassword: hashedPassword, roles: ['admin']});
+            User.create({username: 'SPopgeorgiev', firstName: 'Stefan', lastName: 'Popgeorgiev', email: 'SPopgeorgiev@drasti.bg', salt: salt, hashPass: hashedPassword, roles: ['admin']});
 
             salt = encryption.generateSalt();
             hashedPassword = encryption.generateHashedPassword(salt, 'ventsislav-georgiev');
-            User.create({username: 'ventsislav-georgiev', firstName: 'Ventsislav', lastName: 'Georgiev', email: 'ventsislav-georgiev@drasti.bg', salt: salt, hashPassword: hashedPassword, roles: ['admin']});
+            User.create({username: 'ventsislav-georgiev', firstName: 'Ventsislav', lastName: 'Georgiev', email: 'ventsislav-georgiev@drasti.bg', salt: salt, hashPass: hashedPassword, roles: ['admin']});
 
             salt = encryption.generateSalt();
             hashedPassword = encryption.generateHashedPassword(salt, 'kulin1987');
-            User.create({username: 'kulin1987', firstName: 'Ventsislav', lastName: 'Kulin', email: 'kulin1987@drasti.bg', salt: salt, hashPassword: hashedPassword, roles: ['admin']});
+            User.create({username: 'kulin1987', firstName: 'Ventsislav', lastName: 'Kulin', email: 'kulin1987@drasti.bg', salt: salt, hashPass: hashedPassword, roles: ['admin']});
 
             console.log('users added to database');
         }

@@ -10,7 +10,7 @@ module.exports = {
             req.logIn(user, function (err) {
                 if (err) return next(err);
                 user.salt = undefined;
-                user.hashPassword = undefined;
+                user.hashPass = undefined;
                 res.send({success: true, user: user});
             })
         });
