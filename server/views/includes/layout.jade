@@ -2,7 +2,40 @@ doctype
 html
     head
         title Drasti.bg
-
+        link(rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css")
     body
+      header.nav.navbar-inverse
+            .container
+                .navbar-header
+                    a.navbar-brand(href="/") Drasti.bg
+                .navbar-collapse.collapse
+                    ul.nav.navbar-nav
+                        li
+                            a(href="/") Home
+                        if !currentUser
+                            li
+                                a(href="/users") Register
+                            li
+                                a(href="/login") Login
+                        else
+                            li
+                                a(href="/profile") #{currentUser.username}
+                            li
+                                a(href="/logout") Logout
+
+        .container
+            br
+            if errorMessage
+                .alert.alert-danger(role="alert") #{errorMessage}
+
+    .container.body-content
         block main-content
+
+        hr
+      footer
+        p &copy; 2014 - Team Hestia
+
+    script(src="/lib/jquery-2.1.1/jquery-2.1.1.min.js")
+    script(src="/lib/bootstrap-3.2.0/js/bootstrap.js")
+
         include scripts
