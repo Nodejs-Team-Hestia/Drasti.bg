@@ -11,6 +11,7 @@ var userSchema = mongoose.Schema({
         city: String,
         country: String
     },
+    isOnline: false,
     salt: String,
     hashPass: String,
     roles: [String],

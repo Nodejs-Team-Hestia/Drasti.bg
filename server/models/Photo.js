@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var photoSchema = mongoose.Schema({
     title: {type: String, required: true},
+    data: {type: String, required: true},
     Description: String,
     published: Date,
     isApproved: Boolean,

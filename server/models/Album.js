@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var albumSchema = mongoose.Schema({
     title: {type: String, required: true},
+    isPublic: false,
     photos: [
         {type: mongoose.Schema.ObjectId, ref: 'Photo'}
     ]
