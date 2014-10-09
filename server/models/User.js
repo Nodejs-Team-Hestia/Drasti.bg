@@ -11,6 +11,9 @@ var userSchema = mongoose.Schema({
         city: String,
         country: String
     },
+    salt: String,
+    hashPassword: String,
+    roles: [String],
     albums: [
         {type: mongoose.Schema.ObjectId, ref: 'Album'}
     ],
@@ -19,9 +22,7 @@ var userSchema = mongoose.Schema({
     ],
     messages: [
         {type: mongoose.Schema.ObjectId, ref: 'Message'}
-    ],
-    salt: String,
-    hashPassword: String
+    ]
 });
 
 var User = mongoose.model('User', userSchema);
