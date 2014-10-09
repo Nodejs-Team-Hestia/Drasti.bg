@@ -4,7 +4,7 @@ var photoSchema = mongoose.Schema({
     title: {type: String, required: true},
     data: {type: String, required: true},
     Description: String,
-    published: Date,
+    published: date : {type: Date, default: new Date()},
     isApproved: Boolean,
     viewsCount: Number,
     comments: [
