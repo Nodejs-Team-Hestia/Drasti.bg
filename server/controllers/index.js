@@ -1,7 +1,9 @@
-var UsersController = require('../controllers/UsersController');
-var PhotoesController = require('../controllers/PhotosController');
+var UsersController = require('../controllers/UsersController'),
+    PhotosController = require('../controllers/PhotosController'),
+    AlbumsController = require('../controllers/AlbumsController');
 
 module.exports = {
     users: UsersController,
-    photos: PhotoesController
+    photos: PhotosController,
+    albums: AlbumsController
 };
