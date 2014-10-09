@@ -33,6 +33,13 @@ module.exports = {
             res.send(results)
         })
     },
+    updateComment: function (req, res, next) {
+        var commentToUpdate = req.body;
+
+        Message.update({ _id: req.body.id }, commentToUpdate, function () {
+            res.end();
+        })
+    },
     getByReceiver: function(req, res){
         Comment.find({receiver: req.params.id}).populate('sender', 'username').exec(function(err, result) {
             if (err) {

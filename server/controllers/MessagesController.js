@@ -44,9 +44,29 @@ module.exports = {
         })
     },
     updateMessage: function (req, res, next) {
-		//TODO
+        var messageToUpdate = req.body;
+
+        Message.update({ _id: req.body.id }, messageToUpdate, function () {
+            res.end();
+        })
     },
     deleteMessage: function (req, res, next) {
-		//TODO
+        Message.findById(req.body.messageId, function (err, message) {
+            if (err) {
+                console.log('Message could not be found ' + err);
+                return;
+            }
+
+            message.remove(function (err) {
+                if (err) {
+                    console.log('Message could not be removed ' + err);
+                    return;
+                }
+
+                res.send({
+                    success: true
+                });
+            })
+        });
     }
 };
