@@ -1,10 +1,13 @@
-var passport = require('passport'),
-    LocalPassport = require('passport-local'),
-    User = require('mongoose').model('User');
+'use strict';
+var passport = require('passport');
+var localPassport = require('passport-local');
+var mongoose = require('mongoose');
 
-module.exports = function () {
-    passport.use(new LocalPassport(function (username, password, done) {
-        User.findOne({ username: username }).exec(function (err, user) {
+var user = mongoose.model('User');
+
+function init() {
+    passport.use(new localPassport.Strategy(function (username, password, done) {
+        user.findOne({ username: username }).exec(function (err, user) {
             if (err) {
                 console.log('Error loading user: ' + err);
                 return;
@@ -12,11 +15,10 @@ module.exports = function () {
 
             if (user && user.authenticate(password)) {
                 return done(null, user);
+            } else {
+                return done("Username or password is not valid");
             }
-            else {
-                return done(null, false);
-            }
-        })
+        });
     }));
 
     passport.serializeUser(function (user, done) {
@@ -26,7 +28,7 @@ module.exports = function () {
     });
 
     passport.deserializeUser(function (id, done) {
-        User.findOne({_id: id}).exec(function (err, user) {
+        user.findOne({ _id: id }).exec(function (err, user) {
             if (err) {
                 console.log('Error loading user: ' + err);
                 return;
@@ -34,10 +36,12 @@ module.exports = function () {
 
             if (user) {
                 return done(null, user);
-            }
-            else {
+            } else {
                 return done(null, false);
             }
-        })
+        });
     });
-};
+}
+exports.init = init;
+;
+//# sourceMappingURL=passport.js.map

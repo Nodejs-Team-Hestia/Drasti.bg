@@ -1,0 +1,11 @@
+﻿table.table
+  thead
+    tr
+      th Photo Title
+  tbody
+    tr(data-ng-repeat='photo in model.photos')
+      td
+        a(href='/#/photos/{{photo.album}}/{{photo._id}}') {{ photo.title }}
+    tr(ng-show='!model.users.length')
+      td(colspan='4')
+        h1 No results!

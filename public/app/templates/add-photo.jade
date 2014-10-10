@@ -1,0 +1,15 @@
+﻿.container.clearfix
+  form.form-horizontal(name='createForm')
+    .row
+      .col-md-6.col-md-offset-3
+        h1.text-center Add Photo
+        .form-group
+          label.col-lg-2.control-label Title
+          .col-lg-10
+            input.form-control(type='texd', name='title', required='required', ng-model='model.photo.title')
+        br
+        .error-container
+          div
+            small.error(ng-show='createForm.title.$error.required')
+              | The "Title" field is required.
+    div(data-page-action='', data-action-name='Create', data-action='model.add', data-form='createForm')

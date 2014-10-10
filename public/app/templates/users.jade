@@ -1,0 +1,13 @@
+﻿.container.clearfix
+  div(data-page-title='', data-title='Cool People')
+  .row
+    .col-md-12
+      label
+        | Filter:
+        input(type='text', data-ng-model='model.filter')
+      div(data-paging='')
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          div(ng-include='src="/templates/usersTable"')

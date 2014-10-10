@@ -1,0 +1,11 @@
+﻿table.table
+  thead
+    tr
+      th Album Title
+  tbody
+    tr(data-ng-repeat='album in model.albums')
+      td
+        a(href='/#/albums/{{album._id}}') {{ album.title }}
+    tr(ng-show='!model.albums.length')
+      td(colspan='4')
+        h1 No results!

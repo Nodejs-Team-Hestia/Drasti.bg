@@ -1,0 +1,13 @@
+﻿table.table
+  thead
+    tr
+      th Name
+      th Email
+  tbody
+    tr(data-ng-repeat='user in model.users')
+      td
+        a(href='/#/users/{{user._id}}') {{ user.username }}
+      td {{ user.email }}
+    tr(ng-show='!model.users.length')
+      td(colspan='4')
+        h1 No results!

@@ -1,0 +1,16 @@
+﻿.container.clearfix
+  div(data-page-title='', data-title='Albums')
+  .row
+    .col-md-4
+      label
+        | Filter:
+        input(type='text', data-ng-model='model.filter')
+    .col-md-4
+      a(type='button', class='btn btn-default', href='/#/create-album') Create Album
+    .col-md-4
+      div(data-paging='')
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          div(ng-include='src="/templates/albumsTable"')

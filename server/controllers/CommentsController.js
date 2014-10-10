@@ -1,55 +1,63 @@
-var Comment = require('mongoose').model('Comment');
-var User = require('mongoose').model('User');
+﻿var models = require('../models');
 
-module.exports = {
-    createComment : function(req, res){
-		var now = new Date();
-		
-			var data = {
-				text: req.body.text,
-				date: now,
-				sender: req.body.sender,
-				receiver: req.body.receiver
-			};
+var Comment = models.comment.Comment;
+var User = models.user.User;
 
-			var comment = new Comment(data);
+function createComment(req, res) {
+    var now = new Date();
 
-			comment.save(function(err, success){
-				if(err) {
-					res.send(err);
-					return;
-				}
+    var data = {
+        text: req.body.text,
+        date: now,
+        sender: req.body.sender,
+        receiver: req.body.receiver
+    };
 
-				res.send(success);
-			});
-		},
-    getAll: function(req, res){
-        Comment.find({}).exec(function(err, results){
-            if(err) {
-                console.log(err);
-                return;
-            }
+    var comment = new Comment(data);
 
-            res.send(results)
-        })
-    },
-    updateComment: function (req, res, next) {
-        var commentToUpdate = req.body;
+    comment.save(function (err, success) {
+        if (err) {
+            res.send(err);
+            return;
+        }
 
-        Message.update({ _id: req.body.id }, commentToUpdate, function () {
-            res.end();
-        })
-    },
-    getByReceiver: function(req, res){
-        Comment.find({receiver: req.params.id}).populate('sender', 'username').exec(function(err, result) {
-            if (err) {
-                console.log('Comments could not be loaded: ' + err);
-                return;
-            }
+        res.send(success);
+    });
+}
+exports.createComment = createComment;
 
-            console.log(result);
+function getAll(req, res) {
+    Comment.find({}).exec(function (err, results) {
+        if (err) {
+            console.log(err);
+            return;
+        }
 
-            res.send(result);
-        })
-    }
-};
+        res.send(results);
+    });
+}
+exports.getAll = getAll;
+
+function updateComment(req, res, next) {
+    var commentToUpdate = req.body;
+
+    Comment.update({ _id: req.body.id }, commentToUpdate, function () {
+        res.end();
+    });
+}
+exports.updateComment = updateComment;
+
+function getByReceiver(req, res) {
+    Comment.find({ receiver: req.params.id }).populate('sender', 'username').exec(function (err, result) {
+        if (err) {
+            console.log('Comments could not be loaded: ' + err);
+            return;
+        }
+
+        console.log(result);
+
+        res.send(result);
+    });
+}
+exports.getByReceiver = getByReceiver;
+//# sourceMappingURL=commentsController.js.map

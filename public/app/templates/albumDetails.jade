@@ -1,0 +1,17 @@
+﻿.container.clearfix
+  div(data-page-title='', data-title='{{model.album.title}}')
+  .row
+    .col-md-12
+      a.pull-right(type='button', class='btn btn-default', href='/#/add-photo/{{model.album._id}}') Add Photo
+  .row(ng-show='model.showPageAndFilter')
+    .col-md-5
+      label
+        | Filter:
+        input(type='text', data-ng-model='model.filter')
+    .col-md-5
+      div(data-paging='')
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          div(ng-include='src="/templates/photosTable"')

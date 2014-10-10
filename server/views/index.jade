@@ -1,10 +1,44 @@
 extends includes/layout
 block main-content
-    header
+	.navbar.navbar-default
+		.container
+			.navbar-header
+				a.navbar-brand(href='/#') Drasti.bg
+				button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+			#navbar-main.navbar-collapse.collapse
+				ul.nav.navbar-nav.navbar-left(ng-hide='!model.user.isAuth')
+					li
+						a(href='/#/users') Cool People
+					li
+						a(href='/#/albums') Albums
+				ul.nav.navbar-nav.navbar-right
+					li(ng-hide='model.user.isAuth')
+						a(href='/#/register') Register
+					li(ng-hide='model.user.isAuth')
+						a(href='/#/login') Login
+					li.dropdown(ng-hide='!model.user.isAuth')
+						a.dropdown-toggle(href='javascript:void', data-toggle='dropdown')
+							| Welcome, {{model.user.username}}!
+							b.caret
+						ul.dropdown-menu
+							li
+								a(href='/#/login', ng-click='model.logout()') Logout
+							li
+								a(href='/#/userInfo') User Info
+	.container
+		section
+			div(ng-view)
+		br
 
-    section
-        | Hi!
-
-    footer
-        p.text-center
-            | &copy; Team Hestia
+	footer.panel-footer
+		p.text-center.text-primary
+			| &copy; 
+			span
+				a(href="https://github.com/Nodejs-Team-Hestia/Drasti.bg") 
+					| Nodejs-Team-Hestia
+				section.text-center.text-primary
+					span(ng-show='model.time')
+						| Server Time: {{ model.time | date:'mediumTime' }} (By Socket.IO)

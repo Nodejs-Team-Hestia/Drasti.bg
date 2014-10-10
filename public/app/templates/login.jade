@@ -1,0 +1,20 @@
+﻿.container.clearfix(ng-controller='accountController')
+  form.form-horizontal(name='loginForm')
+    .row
+      .col-md-6.col-md-offset-3
+        h1.text-center Login
+        .form-group
+          input#tbUsername.form-control(type='text', name='tbUsername', placeholder='Username', required='required', ng-model='model.userInfo.username')
+          input#tbPassword.form-control(type='password', name='tbPassword', placeholder='Password', required='required', ng-model='model.userInfo.password', ng-minlength='4')
+        br
+        .error-container
+          div
+            small.error(ng-show='loginForm.tbUsername.$error.required')
+              | The Username field is required.
+          div
+            small.error(ng-show='loginForm.tbPassword.$error.minlength')
+              | Password must be must be at least 4 characters long.
+          div
+            small.error(ng-show='loginForm.tbPassword.$error.required')
+              | The Password field is required.
+    div(data-page-action='', data-action-name='Login', data-action='model.login', data-form='loginForm')

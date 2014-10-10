@@ -1,35 +1,41 @@
-var auth = require('./auth'),
-    controllers = require('../controllers'),
-    PHOTO_PATH = '/:userId/:albumId',
-    ALBUM_PATH = '/:userId/albums';
+'use strict';
+var auth = require('./auth');
+var controllers = require('../controllers');
 
-module.exports = function (app) {
-    app.get('/', function (req, res) {
-        res.render('index');
+function init(app) {
+    // Templates
+    app.get('/templates/:templateName', function (req, res) {
+        res.render('../../public/app/templates/' + req.params.templateName);
     });
 
-    // user
-    app.get('/users', auth.isInRole('admin'), controllers.users.getAllUsers);
-    app.get('/users/:id', controllers.users.getUserById);
-    app.post('/users', controllers.users.createUser);
-    app.put('/users', auth.isAuthenticated, controllers.users.updateUser);
+    // Users
+    app.route('/api/users').get(controllers.users.getAllUsers).post(controllers.users.createUser).put(auth.isAuthenticated, controllers.users.updateUser);
+
+    app.route('/api/users/:id').get(controllers.users.getById).post(auth.isInRole('admin'), controllers.users.updateByAdmin).delete(auth.isInRole('admin'), controllers.users.deleteUser);
+
+    //.put(auth.isAuthenticated(), controllers.users.voteForUser)
     app.post('/login', auth.login);
     app.post('/logout', auth.logout);
 
-    // photo
-    app.post(PHOTO_PATH, controllers.photos.uploadPhoto);
-    app.get(PHOTO_PATH + '/:id', controllers.photos.getPhotoById);
-    app.put(PHOTO_PATH + '/:id', auth.isInRole('user'), controllers.photos.updatePhoto);
-    app.delete(PHOTO_PATH + '/:id', auth.isInRole('user'), controllers.photos.deletePhoto);
+    // Albums
+    app.get('/:userId/albums/:id', controllers.albums.getAlbumById);
+    app.route('/:userId/albums').get(controllers.albums.getAllAlbums).post(controllers.albums.createAlbum).put(controllers.albums.updateAlbum).delete(controllers.albums.deleteAlbum);
 
-    // album
-    app.get(ALBUM_PATH, controllers.albums.getAllAlbums);
-    app.post(ALBUM_PATH, controllers.albums.createAlbum);
-    app.get(ALBUM_PATH + '/:id', controllers.albums.getAlbumById);
-    app.put(ALBUM_PATH, controllers.albums.updateAlbum);
-    app.delete(ALBUM_PATH, controllers.albums.deleteAlbum);
+    // Photos
+    app.route('/:userId/:albumId').get(controllers.photos.getAllPhotos).post(controllers.photos.uploadPhoto);
+    app.route('/:userId/:albumId/:id').get(controllers.photos.getPhotoById).put(auth.isInRole('user'), controllers.photos.updatePhoto).delete(auth.isInRole('user'), controllers.photos.deletePhoto);
 
-    app.get('*', function (req, res) {
-        res.redirect('/');
+    app.get('/api/*', function (req, res) {
+        res.render('index');
+        res.status(404);
+        res.end();
     });
-};
+
+    // Otherwise
+    app.get('*', function (req, res) {
+        res.render('index', { currentUser: req.user });
+    });
+}
+exports.init = init;
+;
+//# sourceMappingURL=routes.js.map

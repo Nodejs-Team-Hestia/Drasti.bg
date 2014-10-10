@@ -1,13 +1,26 @@
+﻿'use strict';
 var mongoose = require('mongoose');
 
-var messageSchema = mongoose.Schema({
-	title: {type: String, required: true},
-    text: {type: String, required: true},
-    sender: {type: mongoose.Schema.ObjectId, ref: 'User'},
-	receiver: {type: mongoose.Schema.ObjectId, ref: 'User'},
-    sent: {type: Date, default: new Date()}
-});
+exports.Message;
 
-var Message = mongoose.model('Message', messageSchema);
+function init() {
+    var messagesSchema = new mongoose.Schema({
+        content: { type: String, required: '{PATH} is required' },
+        date: { type: Date, default: new Date() },
+        sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        receiver: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    });
 
-module.exports = Message;
+    exports.Message = mongoose.model('Message', messagesSchema);
+}
+exports.init = init;
+
+function seedInitial(callback) {
+    if (!process.env.NODE_ENV) {
+        //Message.remove({}, function (err) {
+        //	if (err) return console.log(err);
+        //});
+    }
+}
+exports.seedInitial = seedInitial;
+//# sourceMappingURL=message.js.map

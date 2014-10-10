@@ -1,61 +1,77 @@
-var mongoose = require('mongoose'),
-    encryption = require('../utilities/encryption');
+'use strict';
+var mongoose = require('mongoose');
 
-var userSchema = mongoose.Schema({
-    username: {type: String, required: true, unique: true},
-    email: {type: String, required: true, unique: true},
-    firstName: {type: String},
-    lastName: {type: String},
-    dateOfBirth: Date,
-    location: {
-        city: String,
-        country: String
-    },
-    isOnline: false,
-    salt: String,
-    hashPass: String,
-    roles: [String],
-    albums: [
-        {type: mongoose.Schema.ObjectId, ref: 'Album'}
-    ],
-    friends: [
-        {type: mongoose.Schema.ObjectId, ref: 'User'}
-    ],
-    messages: [
-        {type: mongoose.Schema.ObjectId, ref: 'Message'}
-    ]
-});
+var encryption = require('../utilities/encryption');
 
-var User = mongoose.model('User', userSchema);
+function addPassword(user) {
+    // Password is the same as the username
+    var salt = encryption.generateSalt();
+    var hashedPwd = encryption.generateHashedPassword(salt, user.username);
+    user.salt = salt;
+    user.hashPass = hashedPwd;
+}
 
-module.exports = User;
+exports.User;
 
-module.exports.seedInitialUsers = function () {
-    User.find({}).exec(function (err, collection) {
-        if (err) {
-            console.log('Cannot find users ' + err);
-        }
-        if (collection.length === 0) {
-            var salt,
-                hashedPassword;
+function init() {
+    var userSchema = new mongoose.Schema({
+        username: { type: String, required: true, unique: true },
+        email: { type: String, required: true, unique: true },
+        firstName: { type: String },
+        lastName: { type: String },
+        dateOfBirth: Date,
+        location: {
+            city: String,
+            country: String
+        },
+        isOnline: false,
+        salt: String,
+        hashPass: String,
+        roles: [String],
+        albums: [
+            { type: mongoose.Schema.Types.ObjectId, ref: 'Album' }
+        ],
+        friends: [
+            { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+        ],
+        messages: [
+            { type: mongoose.Schema.Types.ObjectId, ref: 'Message' }
+        ]
+    });
 
-            salt = encryption.generateSalt();
-            hashedPassword = encryption.generateHashedPassword(salt, 'Anastasoff');
-            User.create({username: 'Anastasoff', firstName: 'Martin', lastName: 'Anastasov', email: 'Anastasoff@drasti.bg', salt: salt, hashPass: hashedPassword, roles: ['admin']});
-
-            salt = encryption.generateSalt();
-            hashedPassword = encryption.generateHashedPassword(salt, 'SPopgeorgiev');
-            User.create({username: 'SPopgeorgiev', firstName: 'Stefan', lastName: 'Popgeorgiev', email: 'SPopgeorgiev@drasti.bg', salt: salt, hashPass: hashedPassword, roles: ['admin']});
-
-            salt = encryption.generateSalt();
-            hashedPassword = encryption.generateHashedPassword(salt, 'ventsislav-georgiev');
-            User.create({username: 'ventsislav-georgiev', firstName: 'Ventsislav', lastName: 'Georgiev', email: 'ventsislav-georgiev@drasti.bg', salt: salt, hashPass: hashedPassword, roles: ['admin']});
-
-            salt = encryption.generateSalt();
-            hashedPassword = encryption.generateHashedPassword(salt, 'kulin1987');
-            User.create({username: 'kulin1987', firstName: 'Ventsislav', lastName: 'Kulin', email: 'kulin1987@drasti.bg', salt: salt, hashPass: hashedPassword, roles: ['admin']});
-
-            console.log('users added to database');
+    userSchema.method({
+        authenticate: function (password) {
+            return encryption.generateHashedPassword(this.salt, password) === this.hashPass;
         }
     });
-};
+
+    exports.User = mongoose.model('User', userSchema);
+}
+exports.init = init;
+
+function seedInitialUsers(callback) {
+    if (!process.env.NODE_ENV) {
+        exports.User.remove({}, function (err) {
+            if (err)
+                return console.log(err);
+
+            var users = require('./users.json');
+            users.forEach(function (userJson) {
+                return addPassword(userJson);
+            });
+
+            exports.User.create(users, function (err) {
+                if (err)
+                    return console.log(err);
+
+                console.log('Database seeded with users...');
+
+                if (callback) {
+                    callback();
+                }
+            });
+        });
+    }
+}
+exports.seedInitialUsers = seedInitialUsers;
+//# sourceMappingURL=user.js.map

@@ -1,14 +1,27 @@
+﻿'use strict';
 var mongoose = require('mongoose');
 
-var albumSchema = mongoose.Schema({
-    title: {type: String, required: true},
-    isPublic: false,
-    photos: [
-        {type: mongoose.Schema.ObjectId, ref: 'Photo'}
-    ]
-    // TODO: we may need more props
-});
+exports.Album;
 
-var Album = mongoose.model('Album', albumSchema);
+function init() {
+    var albumSchema = new mongoose.Schema({
+        title: { type: String, required: true },
+        isPublic: false,
+        photos: [
+            { type: mongoose.Schema.Types.ObjectId, ref: 'Photo' }
+        ]
+    });
 
-module.exports = Album;
+    exports.Album = mongoose.model('Album', albumSchema);
+}
+exports.init = init;
+
+function seedInitial(callback) {
+    if (!process.env.NODE_ENV) {
+        //Album.remove({}, function (err) {
+        //	if (err) return console.log(err);
+        //});
+    }
+}
+exports.seedInitial = seedInitial;
+//# sourceMappingURL=album.js.map

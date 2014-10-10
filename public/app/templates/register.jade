@@ -1,0 +1,46 @@
+﻿.container.clearfix
+  form.form-horizontal(name='regForm')
+    .row
+      .col-md-6.col-md-offset-3
+        h1.text-center Register
+        .form-group
+          label.col-lg-2.control-label(for='tbUsername') Username
+          .col-lg-10
+            input#tbUsername.form-control(type='text', name='tbUsername', required='required', ng-model='model.userInfo.username')
+        .form-group
+          label.col-lg-2.control-label(for='tbEmail') Email
+          .col-lg-10
+            input#tbEmail.form-control(type='email', name='tbEmail', required='required', ng-model='model.userInfo.email')
+        .form-group
+          label.col-lg-2.control-label(for='tbPassword') Password
+          .col-lg-10
+            input#tbPassword.form-control(type='password', name='tbPassword', required='required', ng-model='model.userInfo.password', ng-minlength='4')
+        .form-group
+          label.col-lg-2.control-label(for='tbConfirmPassword') Confirm password
+          .col-lg-10
+            input#tbConfirmPassword.form-control(type='password', name='tbConfirmPassword', required='required', ng-model='model.userInfo.confirmPassword', ng-minlength='4')
+        br
+        .error-container
+          div
+            small.error(ng-show='regForm.tbUsername.$error.required')
+              | The Username field is required.
+            small.error(ng-show='regForm.tbUsername.$error.Username')
+              | The Username field value is not valid.
+          div
+            small.error(ng-show='regForm.tbEmail.$error.required')
+              | The Email field is required.
+            small.error(ng-show='regForm.tbEmail.$error.email')
+              | The Email field value is not valid.
+          div
+            small.error(ng-show='regForm.tbPassword.$error.minlength')
+              | Password must be must be at least 4 characters long.
+          div
+            small.error(ng-show='regForm.tbPassword.$error.required')
+              | The Password field is required.
+          div
+            small.error(ng-show='regForm.tbConfirmPassword.$error.minlength')
+              | ConfirmPassword must be must be at least 4 characters long.
+          div
+            small.error(ng-show='regForm.tbConfirmPassword.$error.required')
+              | The ConfirmPassword field is required.
+    div(data-page-action='', data-action-name='Register', data-action='model.register', data-form='regForm')
